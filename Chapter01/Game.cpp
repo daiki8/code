@@ -11,6 +11,9 @@
 const int thickness = 15;
 const float paddleH = 100.0f;
 
+const int windowH = 768;
+const int windowW = 1024;
+
 Game::Game()
 :mWindow(nullptr)
 ,mRenderer(nullptr)
@@ -34,11 +37,11 @@ bool Game::Initialize()
 	// Create an SDL Window
 	mWindow = SDL_CreateWindow(
 		"Game Programming in C++ (Chapter 1)", // Window title
-		100,	// Top left x-coordinate of window
-		100,	// Top left y-coordinate of window
-		1024,	// Width of window
-		768,	// Height of window
-		0		// Flags (0 for no flags set)
+		100,	    // Top left x-coordinate of window
+		100,	    // Top left y-coordinate of window
+		windowW,	// Width of window
+		windowH,	// Height of window
+		0		    // Flags (0 for no flags set)
 	);
 
 	if (!mWindow)
@@ -61,9 +64,9 @@ bool Game::Initialize()
 	}
 	//
 	mPaddlePos.x = 10.0f;
-	mPaddlePos.y = 768.0f/2.0f;
-	mBallPos.x = 1024.0f/2.0f;
-	mBallPos.y = 768.0f/2.0f;
+	mPaddlePos.y = ((float)windowH)/2.0f;
+	mBallPos.x = ((float)windowW) /2.0f;
+	mBallPos.y = ((float)windowH) /2.0f;
 	mBallVel.x = -200.0f;
 	mBallVel.y = 235.0f;
 	return true;
@@ -141,9 +144,9 @@ void Game::UpdateGame()
 		{
 			mPaddlePos.y = paddleH/2.0f + thickness;
 		}
-		else if (mPaddlePos.y > (768.0f - paddleH/2.0f - thickness))
+		else if (mPaddlePos.y > (((float)windowH) - paddleH/2.0f - thickness))
 		{
-			mPaddlePos.y = 768.0f - paddleH/2.0f - thickness;
+			mPaddlePos.y = ((float)windowH) - paddleH/2.0f - thickness;
 		}
 	}
 	
@@ -172,7 +175,7 @@ void Game::UpdateGame()
 		mIsRunning = false;
 	}
 	// Did the ball collide with the right wall?
-	else if (mBallPos.x >= (1024.0f - thickness) && mBallVel.x > 0.0f)
+	else if (mBallPos.x >= (((float)windowW) - thickness) && mBallVel.x > 0.0f)
 	{
 		mBallVel.x *= -1.0f;
 	}
@@ -183,7 +186,7 @@ void Game::UpdateGame()
 		mBallVel.y *= -1;
 	}
 	// Did the ball collide with the bottom wall?
-	else if (mBallPos.y >= (768 - thickness) &&
+	else if (mBallPos.y >= (windowH - thickness) &&
 		mBallVel.y > 0.0f)
 	{
 		mBallVel.y *= -1;
@@ -211,20 +214,20 @@ void Game::GenerateOutput()
 	SDL_Rect wall{
 		0,			// Top left x
 		0,			// Top left y
-		1024,		// Width
+		windowW,		// Width
 		thickness	// Height
 	};
 	SDL_RenderFillRect(mRenderer, &wall);
 	
 	// Draw bottom wall
-	wall.y = 768 - thickness;
+	wall.y = windowH - thickness;
 	SDL_RenderFillRect(mRenderer, &wall);
 	
 	// Draw right wall
-	wall.x = 1024 - thickness;
+	wall.x = windowW - thickness;
 	wall.y = 0;
 	wall.w = thickness;
-	wall.h = 1024;
+	wall.h = windowW;
 	SDL_RenderFillRect(mRenderer, &wall);
 	
 	// Draw paddle
