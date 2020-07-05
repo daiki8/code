@@ -192,11 +192,11 @@ void Game::UpdateGame()
 
 void Game::GenerateOutput()
 {
-	// Set draw color to blue
+	// Set draw color to right blue
 	SDL_SetRenderDrawColor(
 		mRenderer,
 		0,		// R
-		0,		// G 
+		255,	// G 
 		255,	// B
 		255		// A
 	);
