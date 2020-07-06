@@ -114,6 +114,17 @@ void Game::ProcessInput()
 	{
 		mPaddleDir += 1;
 	}
+
+    // Update paddle direction based on W/S keys
+    mPaddleDir2 = 0;
+    if (state[SDL_SCANCODE_I])
+    {
+        mPaddleDir2 -= 1;
+    }
+    if (state[SDL_SCANCODE_K])
+    {
+        mPaddleDir2 += 1;
+    }
 }
 
 void Game::UpdateGame()
