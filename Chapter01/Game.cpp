@@ -11,7 +11,7 @@
 const int thickness = 15;
 const float paddleH = 100.0f;
 
-const int windowH = 768;
+const int windowH = 500;
 const int windowW = 1024;
 
 Game::Game()
@@ -66,7 +66,7 @@ bool Game::Initialize()
 	//
 	mPaddlePos.x = 10.0f;
 	mPaddlePos.y = ((float)windowH)/2.0f;
-    mPaddlePos2.x = (float)(windowW - 20.0f);
+    mPaddlePos2.x = (float)(windowW - 25.0f);
     mPaddlePos2.y = ((float)windowH) / 2.0f;
 	mBallPos.x = ((float)windowW) /2.0f;
 	mBallPos.y = ((float)windowH) /2.0f;
@@ -203,14 +203,14 @@ void Game::UpdateGame()
         // Our y-difference is small enough
         diff2 <= paddleH / 2.0f &&
         // We are in the correct x-position
-        mBallPos.x <= (float)(windowW-20.0f) && mBallPos.x >= (float)(windowW-25.0f) &&
+        mBallPos.x <= (float)(windowW-25.0f) && mBallPos.x >= (float)(windowW-30.0f) &&
         // The ball is moving to the left
         mBallVel.x > 0.0f)
     {
         mBallVel.x *= -1.0f;
     }
 	// Did the ball go off the screen? (if so, end game)
-	else if (mBallPos.x <= 0.0f)
+	else if (mBallPos.x <= 0.0f || mBallPos.x >= (float)windowW)
 	{
 		mIsRunning = false;
 	}
