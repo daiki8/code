@@ -50,6 +50,7 @@ private:
 
 	// Position of paddle
 	Vector2 mPaddlePos;
+	Vector2 mPaddlePos2;
 	// Position of ball
 	Vector2 mBallPos;
 	// Velocity of ball
