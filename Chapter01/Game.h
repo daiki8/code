@@ -63,4 +63,6 @@ private:
 	//Vector2 mBallVel;
     std::vector<Ball> mBalls;
 
+    bool mIsPose;
+
 };

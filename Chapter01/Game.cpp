@@ -23,6 +23,7 @@ Game::Game()
 ,mIsRunning(true)
 ,mPaddleDir(0)
 ,mPaddleDir2(0)
+,mIsPose(false)
 {
 	
 }
@@ -90,7 +91,7 @@ void Game::RunLoop()
 	while (mIsRunning)
 	{
 		ProcessInput();
-		UpdateGame();
+		if (!mIsPose) UpdateGame();
 		GenerateOutput();
 	}
 }
@@ -117,6 +118,11 @@ void Game::ProcessInput()
 	{
 		mIsRunning = false;
 	}
+
+    if (state[SDL_SCANCODE_P])
+    {
+        mIsPose = (mIsPose) ? false : true;
+    }
 	
 	// Update paddle direction based on W/S keys
 	mPaddleDir = 0;
