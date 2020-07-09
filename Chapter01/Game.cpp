@@ -98,7 +98,6 @@ void Game::RunLoop()
 
 void Game::ProcessInput()
 {
-
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
@@ -121,7 +120,7 @@ void Game::ProcessInput()
 
     if (state[SDL_SCANCODE_P])
     {
-        mIsPose = (mIsPose) ? false : true;
+        mIsPose = !mIsPose;
     }
 	
 	// Update paddle direction based on W/S keys
