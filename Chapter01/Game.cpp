@@ -24,6 +24,7 @@ Game::Game()
 ,mPaddleDir(0)
 ,mPaddleDir2(0)
 ,mIsPose(false)
+,mPrevPState(0)
 {
 	
 }
@@ -80,7 +81,7 @@ bool Game::Initialize()
         ball.pos.x = ((float)windowW) / 2.0f;
         ball.pos.y = ((float)windowH) / 2.0f;
         ball.vel.x = -200.0f + i;
-        ball.vel.y = -235.0f + i;
+        ball.vel.y = -235.0f;
         mBalls.emplace_back(ball);
     }
 	return true;
@@ -118,11 +119,12 @@ void Game::ProcessInput()
 		mIsRunning = false;
 	}
 
-    if (state[SDL_SCANCODE_P])
+    if (!mPrevPState && state[SDL_SCANCODE_P])
     {
         mIsPose = !mIsPose;
     }
-	
+    mPrevPState = state[SDL_SCANCODE_P];
+
 	// Update paddle direction based on W/S keys
 	mPaddleDir = 0;
 	if (state[SDL_SCANCODE_W])

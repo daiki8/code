@@ -64,5 +64,6 @@ private:
     std::vector<Ball> mBalls;
 
     bool mIsPose;
+    Uint8  mPrevPState;
 
 };
