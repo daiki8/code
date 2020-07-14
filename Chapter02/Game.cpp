@@ -45,6 +45,7 @@ bool Game::Initialize()
 		return false;
 	}
 	
+    // IMG Image‚ğ‰Šú‰»
 	if (IMG_Init(IMG_INIT_PNG) == 0)
 	{
 		SDL_Log("Unable to initialize SDL_image: %s", SDL_GetError());
